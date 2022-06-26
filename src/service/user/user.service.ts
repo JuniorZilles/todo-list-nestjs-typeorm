@@ -12,8 +12,10 @@ export default class UserService {
     private userRepository: Repository<User>
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto) {
+    const result = this.userRepository.create(createUserDto);
+    await this.userRepository.save(result);
+    return result;
   }
 
   findAll() {
