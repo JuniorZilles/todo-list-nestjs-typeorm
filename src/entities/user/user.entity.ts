@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { toDate, toStringDate } from 'src/utils/date.transform';
+import { toDate, toStringDate } from '../../utils/date.transform';
 import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 export default class User {
