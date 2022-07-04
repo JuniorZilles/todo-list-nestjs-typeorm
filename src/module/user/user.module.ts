@@ -4,6 +4,6 @@ import UserController from '../../controller/user/user.controller';
 
 @Module({
   controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService]
 })
 export default class UserModule {}
