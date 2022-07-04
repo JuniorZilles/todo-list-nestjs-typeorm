@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import CreateUserDto from 'src/dto/user/create-user.dto';
-import { createOneUser } from 'test/utils/factory/user.factory';
+import CreateUserDto from '../../src/dto/user/create-user.dto';
+import { createOneUser } from '../utils/factory/user.factory';
 import UserService from '../../src/service/user/user.service';
 
 describe('src :: service :: UserService()', () => {
