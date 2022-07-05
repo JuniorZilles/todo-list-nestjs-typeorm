@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { taskRepositoryMock } from 'test/utils/mocks/task.repository.mock';
+import { taskRepositoryMock } from '../utils/mocks/task.repository.mock';
 import Task from '../../src/entities/task/task.entity';
 import TaskService from '../../src/service/task/task.service';
 
