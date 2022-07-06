@@ -41,13 +41,12 @@ export default class CustomRepository<Entity, DTO extends DeepPartial<Entity>, S
   }
 
   async findAll(payload: SearchDTO): Promise<Pagination<DTO>> {
-    const { page, limit, order, ...search } = payload;
+    const { page, limit, ...search } = payload;
     const docs = await paginate<Entity>(
       this.repository,
       { page, limit },
       {
-        where: search,
-        address: order
+        where: search
       } as unknown as FindManyOptions<Entity>
     );
     return docs as unknown as Pagination<DTO>;

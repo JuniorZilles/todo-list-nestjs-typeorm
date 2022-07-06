@@ -20,13 +20,5 @@ export default class PageDto {
     @Transform(({ value }) => Number(value))
     @IsNumber()
     limit? = 10;
-  
-    @ApiProperty({
-      description: 'Order of the results',
-      required: false
-    })
-    @IsOptional()
-    @IsEnum(['ASC', 'DESC'])
-    order?: 'ASC' | 'DESC';
   }
   
