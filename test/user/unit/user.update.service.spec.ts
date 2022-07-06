@@ -25,7 +25,7 @@ describe('src :: service :: UserService() :: update', () => {
       service = module.get<UserService>(UserService);
     });
 
-    describe('WHEN adding a valid user', () => {
+    describe('WHEN update a existing user', () => {
       let updatedUser: CreateUserDto;
       beforeEach(async () => {
         updatedUser = await service.update('1', userFactory);
@@ -37,7 +37,6 @@ describe('src :: service :: UserService() :: update', () => {
         expect(updatedUser.id).toBe('1');
         expect(updatedUser).toHaveProperty('name');
         expect(updatedUser).toHaveProperty('email');
-        expect(updatedUser).not.toHaveProperty('password');
         expect(updatedUser).toHaveProperty('address');
         expect(updatedUser).toHaveProperty('city');
         expect(updatedUser).toHaveProperty('state');
