@@ -33,6 +33,16 @@ describe('src :: service :: UserService() :: create', () => {
         expect(createdUser).toBeDefined();
         expect(createdUser).toHaveProperty('id');
         expect(createdUser.id).toBeDefined();
+        expect(createdUser).toHaveProperty('name');
+        expect(createdUser).toHaveProperty('email');
+        expect(createdUser).not.toHaveProperty('password');
+        expect(createdUser).toHaveProperty('address');
+        expect(createdUser).toHaveProperty('city');
+        expect(createdUser).toHaveProperty('state');
+        expect(createdUser).toHaveProperty('country');
+        expect(createdUser).toHaveProperty('zipCode');
+        expect(createdUser).toHaveProperty('cpf');
+        expect(createdUser).toHaveProperty('birthday');
       });
     });
   });
