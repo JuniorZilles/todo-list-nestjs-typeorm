@@ -4,9 +4,11 @@ import Task from '../../entities/task/task.entity';
 import { Repository } from 'typeorm';
 import CreateTaskDto from '../../dto/task/create-task.dto';
 import UpdateTaskDto from '../../dto/task/update-task.dto';
+import CustomRepository from '../../repository/repository';
 
 @Injectable()
 export default class TaskService {
+  private repository: CustomRepository<Task, CreateTaskDto>;
   constructor(
     @InjectRepository(Task)
     private taskRepository: Repository<Task>
