@@ -1,14 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { toDate, toStringDate } from '../../utils/date.transform';
 import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { toDate, toStringDate } from '../../utils/date.transform';
 
 export default class User {
   @ApiProperty({
     description: 'Person Identifier'
   })
   @PrimaryGeneratedColumn('uuid')
-  id: String;
+  id: string;
 
   @ApiProperty({
     description: 'Person Name',

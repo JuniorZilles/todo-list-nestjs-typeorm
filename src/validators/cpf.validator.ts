@@ -1,5 +1,6 @@
 import { ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments } from 'class-validator';
 import { cpfRegex } from 'src/utils/default.regex';
+import validateCPF from './cpf.validation.fn';
 
 @ValidatorConstraint({ name: 'CpfValidator', async: false })
 export default class CpfValidator implements ValidatorConstraintInterface {

@@ -1,9 +1,10 @@
 import { paginate, Pagination } from 'nestjs-typeorm-paginate';
-import PageDto from '../../src/dto/utils/page.dto';
 import { DeepPartial, FindManyOptions, FindOneOptions, Repository } from 'typeorm';
+import PageDto from '../dto/utils/page.dto';
 
 export default class CustomRepository<Entity, DTO extends DeepPartial<Entity>, SearchDTO extends PageDto> {
   private repository: Repository<Entity>;
+
   constructor(repository: Repository<Entity>) {
     this.repository = repository;
   }
@@ -24,9 +25,8 @@ export default class CustomRepository<Entity, DTO extends DeepPartial<Entity>, S
     if (result) {
       await this.repository.remove(result);
       return result as DTO;
-    } else {
-      return null;
     }
+    return null;
   }
 
   async update(id: string, dto: DTO): Promise<DTO> {
@@ -35,20 +35,15 @@ export default class CustomRepository<Entity, DTO extends DeepPartial<Entity>, S
       const newDto = { ...result, ...dto };
       await this.repository.save(newDto);
       return newDto as DTO;
-    } else {
-      return null;
     }
+    return null;
   }
 
   async findAll(payload: SearchDTO): Promise<Pagination<DTO>> {
     const { page, limit, ...search } = payload;
-    const docs = await paginate<Entity>(
-      this.repository,
-      { page, limit },
-      {
-        where: search
-      } as unknown as FindManyOptions<Entity>
-    );
+    const docs = await paginate<Entity>(this.repository, { page, limit }, {
+      where: search
+    } as unknown as FindManyOptions<Entity>);
     return docs as unknown as Pagination<DTO>;
   }
 }

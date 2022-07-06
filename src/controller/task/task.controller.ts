@@ -1,19 +1,11 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import TaskService from '../../service/task/task.service';
 import CreateTaskDto from '../../dto/task/create-task.dto';
 import UpdateTaskDto from '../../dto/task/update-task.dto';
 
 @Controller('task')
 export default class TaskController {
-  constructor(private readonly taskService: TaskService) { }
+  constructor(private readonly taskService: TaskService) {}
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto) {

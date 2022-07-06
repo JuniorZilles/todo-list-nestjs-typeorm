@@ -9,7 +9,7 @@ export default class CreateUserDto {
     required: false,
     readOnly: true
   })
-  id?: String;
+  id?: string;
 
   @ApiProperty({
     description: 'Person Name',

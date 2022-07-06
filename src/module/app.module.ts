@@ -4,6 +4,6 @@ import TaskModule from './task/task.module';
 import UserModule from './user/user.module';
 
 @Module({
-  imports: [DatabaseModule, UserModule, TaskModule],
+  imports: [DatabaseModule, UserModule, TaskModule]
 })
 export default class AppModule {}

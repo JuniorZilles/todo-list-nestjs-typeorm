@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { NotFoundException } from '@nestjs/common';
 import CreateUserDto from '../../../src/dto/user/create-user.dto';
 import UserService from '../../../src/service/user/user.service';
 import User from '../../../src/entities/user/user.entity';
-import { getRepositoryToken } from '@nestjs/typeorm';
-import { userRepositoryMock } from '../../utils/mocks/user.repository.mock';
-import { NotFoundException } from '@nestjs/common';
+import userRepositoryMock from '../../utils/mocks/user.repository.mock';
 
 describe('src :: service :: UserService() :: findOne', () => {
   describe('GIVEN a mocked repository with 10 users', () => {

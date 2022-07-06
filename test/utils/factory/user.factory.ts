@@ -18,8 +18,9 @@ export const createOneUser = () => {
 
 export const createManyUser = (amount = 10) => {
   const users = [];
-  for (let i = 0; i < amount; i++) {
+  for (let i = 0; i < amount; i += 1) {
     const user = { ...createOneUser(), id: `${i + 1}` };
+    delete user.password;
     users.push(user);
   }
   return users;

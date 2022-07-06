@@ -4,8 +4,7 @@ import CpfValidator from 'src/validators/cpf.validator';
 import DateIsOlderAgeValidator from 'src/validators/date.validator';
 import PageDto from '../utils/page.dto';
 
-export default class SearchUserDto extends PageDto{
-
+export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person Name',
     example: 'João Silva'
