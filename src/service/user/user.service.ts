@@ -4,10 +4,12 @@ import User from '../../entities/user/user.entity';
 import { Repository } from 'typeorm';
 import CreateUserDto from '../../dto/user/create-user.dto';
 import CustomRepository from '../../repository/repository';
+import SearchUserDto from '../../dto/user/search-user.dto';
+import ListUserDto from 'src/dto/user/list-user.dto';
 
 @Injectable()
 export default class UserService {
-  private repository: CustomRepository<User, CreateUserDto>;
+  private repository: CustomRepository<User, CreateUserDto, SearchUserDto>;
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>
@@ -20,8 +22,9 @@ export default class UserService {
     return result;
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll(payload: SearchUserDto): Promise<ListUserDto> {
+    const result = await this.repository.findAll(payload);
+    return { users: result.items, meta: result.meta };
   }
 
   async findOne(id: string) {
