@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, IsString, MinLength, Validate } from 'class-validator';
 import CpfValidator from 'src/validators/cpf.validator';
-import DateIsOlderAgeValidator from 'src/validators/date.validator';
+import DateIsOlderAgeValidator from 'src/validators/age.validator';
 
 export default class CreateUserDto {
   @ApiProperty({

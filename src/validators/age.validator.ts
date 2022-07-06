@@ -2,7 +2,7 @@ import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface 
 import { toDifYears, toMomentDate } from 'src/utils/date.transform';
 import { dateRegex } from 'src/utils/default.regex';
 
-@ValidatorConstraint({ name: 'DateValidator', async: false })
+@ValidatorConstraint({ name: 'AgeValidator', async: false })
 export default class DateIsOlderAgeValidator implements ValidatorConstraintInterface {
   validate(text: string, args: ValidationArguments) {
     if (!dateRegex.test(text)) {
