@@ -6,7 +6,7 @@ import Task from '../task/task.entity';
 @Entity('user')
 export default class User {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id?: string;
 
   @Column({ nullable: false })
   name: string;
@@ -20,7 +20,7 @@ export default class User {
     transformer: { to: (value: string) => toDate(value), from: (value: Date) => value }
   })
   @Transform(({ value }) => toStringDate(value))
-  birthday: string | Date;
+  birthday: Date;
 
   @Column({ nullable: false, unique: true })
   email: string;
@@ -44,18 +44,18 @@ export default class User {
   zipCode: string;
 
   @OneToMany(() => Task, (task) => task.user, { cascade: true })
-  tasks: Task[];
+  tasks?: Task[];
 
   @CreateDateColumn({
     default: () => 'CURRENT_TIMESTAMP(6)'
   })
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn({
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)'
   })
-  updatedAt: Date;
+  updatedAt?: Date;
 
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);

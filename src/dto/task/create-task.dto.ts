@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Validate } from 'class-validator';
+import User from '../../entities/user/user.entity';
 import DateIsFutureValidator from '../../validators/futureDate.validator';
 
 export default class CreateTaskDto {
@@ -27,7 +28,7 @@ export default class CreateTaskDto {
   @IsNotEmpty()
   @IsString()
   @Validate(DateIsFutureValidator)
-  date: string | Date;
+  date: Date;
 
   @ApiProperty({
     description: 'User Task Reference',
@@ -36,5 +37,7 @@ export default class CreateTaskDto {
   })
   @IsNotEmpty()
   @IsString()
-  user: string;
+  userId: string;
+
+  user: User;
 }

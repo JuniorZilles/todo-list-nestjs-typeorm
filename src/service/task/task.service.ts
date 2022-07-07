@@ -35,8 +35,8 @@ export default class TaskService {
   }
 
   async create(createTaskDto: CreateTaskDto) {
-    await this.getUser(createTaskDto.user);
-    const result = await this.repositoryTask.create(createTaskDto);
+    const user = await this.getUser(createTaskDto.userId);
+    const result = await this.repositoryTask.create({ ...createTaskDto, user });
     return result;
   }
 
@@ -54,8 +54,8 @@ export default class TaskService {
   }
 
   async update(id: string, updateTaskDto: CreateTaskDto) {
-    await this.getUser(updateTaskDto.user);
-    const result = await this.repositoryTask.update(id, updateTaskDto);
+    const user = await this.getUser(updateTaskDto.userId);
+    const result = await this.repositoryTask.update(id, { ...updateTaskDto, user });
     if (!result) {
       throw new NotFoundException();
     }

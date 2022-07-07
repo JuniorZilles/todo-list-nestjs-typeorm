@@ -34,7 +34,7 @@ export default class SearchUserDto extends PageDto {
   @IsOptional()
   @IsNotEmpty()
   @Validate(DateIsOlderAgeValidator)
-  birthday?: string | Date;
+  birthday?: Date;
 
   @ApiProperty({
     description: 'Person email',
