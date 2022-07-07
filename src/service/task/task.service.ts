@@ -6,30 +6,47 @@ import CreateTaskDto from '../../dto/task/create-task.dto';
 import CustomRepository from '../../repository/repository';
 import SearchTaskDto from '../../dto/task/search-task.dto';
 import ListTaskDto from '../../dto/task/list-task.dto';
+import User from '../../entities/user/user.entity';
+import CreateUserDto from '../../dto/user/create-user.dto';
+import SearchUserDto from '../../dto/user/search-user.dto';
 
 @Injectable()
 export default class TaskService {
-  private repository: CustomRepository<Task, CreateTaskDto, SearchTaskDto>;
+  private repositoryTask: CustomRepository<Task, CreateTaskDto, SearchTaskDto>;
+
+  private repositoryUser: CustomRepository<User, CreateUserDto, SearchUserDto>;
 
   constructor(
     @InjectRepository(Task)
-    private taskRepository: Repository<Task>
+    private taskRepository: Repository<Task>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>
   ) {
-    this.repository = new CustomRepository(this.taskRepository);
+    this.repositoryTask = new CustomRepository(this.taskRepository);
+    this.repositoryUser = new CustomRepository(this.userRepository);
+  }
+
+  async getUser(id: string) {
+    const user = await this.repositoryUser.findOne(id);
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
 
   async create(createTaskDto: CreateTaskDto) {
-    const result = await this.repository.create(createTaskDto);
+    await this.getUser(createTaskDto.user);
+    const result = await this.repositoryTask.create(createTaskDto);
     return result;
   }
 
   async findAll(payload: SearchTaskDto): Promise<ListTaskDto> {
-    const result = await this.repository.findAll(payload);
+    const result = await this.repositoryTask.findAll(payload);
     return { tasks: result.items, meta: result.meta };
   }
 
   async findOne(id: string) {
-    const result = await this.repository.findOne(id);
+    const result = await this.repositoryTask.findOne(id);
     if (!result) {
       throw new NotFoundException();
     }
@@ -37,7 +54,8 @@ export default class TaskService {
   }
 
   async update(id: string, updateTaskDto: CreateTaskDto) {
-    const result = await this.repository.update(id, updateTaskDto);
+    await this.getUser(updateTaskDto.user);
+    const result = await this.repositoryTask.update(id, updateTaskDto);
     if (!result) {
       throw new NotFoundException();
     }
@@ -45,7 +63,7 @@ export default class TaskService {
   }
 
   async remove(id: string) {
-    const result = await this.repository.remove(id);
+    const result = await this.repositoryTask.remove(id);
     if (!result) {
       throw new NotFoundException();
     }
