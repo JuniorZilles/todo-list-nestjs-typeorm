@@ -4,7 +4,7 @@ import { NotFoundException } from '@nestjs/common';
 import taskRepositoryMock from '../../utils/mocks/task.repository.mock';
 import Task from '../../../src/entities/task/task.entity';
 import TaskService from '../../../src/service/task/task.service';
-import createOneTask from '../../utils/factory/task.factory';
+import { createOneTask } from '../../utils/factory/task.factory';
 import CreateTaskDto from '../../../src/dto/task/create-task.dto';
 
 describe('src :: service :: TaskService() :: create', () => {
