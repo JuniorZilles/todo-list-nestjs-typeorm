@@ -6,6 +6,8 @@ import Task from '../../../src/entities/task/task.entity';
 import TaskService from '../../../src/service/task/task.service';
 import { createOneTask } from '../../utils/factory/task.factory';
 import CreateTaskDto from '../../../src/dto/task/create-task.dto';
+import User from '../../../src/entities/user/user.entity';
+import userRepositoryMock from '../../utils/mocks/user.repository.mock';
 
 describe('src :: service :: TaskService() :: create', () => {
   describe('GIVEN a mocked repository with ZERO tasks, and 10 users', () => {
@@ -18,6 +20,10 @@ describe('src :: service :: TaskService() :: create', () => {
           {
             provide: getRepositoryToken(Task),
             useFactory: taskRepositoryMock
+          },
+          {
+            provide: getRepositoryToken(User),
+            useFactory: userRepositoryMock
           }
         ]
       }).compile();
@@ -42,7 +48,7 @@ describe('src :: service :: TaskService() :: create', () => {
     describe('WHEN a task is created for a non existing user', () => {
       it('THEN it throw an error', async () => {
         try {
-          await service.create({ ...taskFactory, id: '12' });
+          await service.create({ ...taskFactory, user: '12' });
         } catch (e) {
           expect(e).toBeInstanceOf(NotFoundException);
           expect((<NotFoundException>e).name).toBe('NotFoundException');
