@@ -24,25 +24,25 @@ describe('src :: service :: UserService() :: findOne', () => {
     });
 
     describe('WHEN searching for a user', () => {
-      let createdUser: CreateUserDto;
+      let foundUser: CreateUserDto;
       beforeEach(async () => {
-        createdUser = await service.findOne('1');
+        foundUser = await service.findOne('1');
       });
       it('THEN it should return the object with a id', () => {
-        expect(createdUser).toBeDefined();
-        expect(createdUser).toHaveProperty('id');
-        expect(createdUser.id).toBeDefined();
-        expect(createdUser.id).toBe('1');
-        expect(createdUser).toHaveProperty('name');
-        expect(createdUser).toHaveProperty('email');
-        expect(createdUser).not.toHaveProperty('password');
-        expect(createdUser).toHaveProperty('address');
-        expect(createdUser).toHaveProperty('city');
-        expect(createdUser).toHaveProperty('state');
-        expect(createdUser).toHaveProperty('country');
-        expect(createdUser).toHaveProperty('zipCode');
-        expect(createdUser).toHaveProperty('cpf');
-        expect(createdUser).toHaveProperty('birthday');
+        expect(foundUser).toBeDefined();
+        expect(foundUser).toHaveProperty('id');
+        expect(foundUser.id).toBeDefined();
+        expect(foundUser.id).toBe('1');
+        expect(foundUser).toHaveProperty('name');
+        expect(foundUser).toHaveProperty('email');
+        expect(foundUser).not.toHaveProperty('password');
+        expect(foundUser).toHaveProperty('address');
+        expect(foundUser).toHaveProperty('city');
+        expect(foundUser).toHaveProperty('state');
+        expect(foundUser).toHaveProperty('country');
+        expect(foundUser).toHaveProperty('zipCode');
+        expect(foundUser).toHaveProperty('cpf');
+        expect(foundUser).toHaveProperty('birthday');
       });
     });
 
