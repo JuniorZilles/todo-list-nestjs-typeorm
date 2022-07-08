@@ -25,7 +25,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'import/no-cycle': 'off',
-    "class-methods-use-this": ["error", { "exceptMethods": ['validate', 'defaultMessage'] }],
+    "class-methods-use-this": ["error", { "exceptMethods": ['validate', 'defaultMessage', "up", "down"] }],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error", { "args": 'none'}],
     'prettier/prettier': ['error', { trailingComma: 'none' }]
