@@ -1,34 +1,83 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  ClassSerializerInterceptor,
+  UseInterceptors,
+  ParseUUIDPipe,
+  Query,
+  HttpCode,
+  Put,
+  HttpStatus
+} from '@nestjs/common';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiInternalServerErrorResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiQuery,
+  ApiTags
+} from '@nestjs/swagger';
+import ListTaskDto from 'src/dto/task/list-task.dto';
+import SearchTaskDto from 'src/dto/task/search-task.dto';
 import TaskService from '../../service/task/task.service';
 import CreateTaskDto from '../../dto/task/create-task.dto';
-import UpdateTaskDto from '../../dto/task/update-task.dto';
+import BadRequestErrorDto from '../../dto/utils/bad-request.dto';
+import ErrorDto from '../../dto/utils/error.dto';
 
-@Controller('task')
+@ApiTags('task')
+@Controller({ path: '/task', version: '1' })
+@UseInterceptors(ClassSerializerInterceptor)
+@ApiBadRequestResponse({ description: 'Bad Request.', type: BadRequestErrorDto })
+@ApiInternalServerErrorResponse({ description: 'Internal Server Error.', type: ErrorDto })
 export default class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  create(@Body() createTaskDto: CreateTaskDto) {
-    return this.taskService.create(createTaskDto);
+  @ApiBody({ type: CreateTaskDto })
+  @ApiCreatedResponse({ description: 'The task was created.', type: CreateTaskDto })
+  async create(@Body() createTaskDto: CreateTaskDto) {
+    const result = await this.taskService.create(createTaskDto);
+    return result;
   }
 
   @Get()
-  findAll() {
-    return this.taskService.findAll();
+  @ApiQuery({ type: SearchTaskDto })
+  @ApiOkResponse({ description: 'Operation succeeded.', type: ListTaskDto })
+  async findAll(@Query() payload: SearchTaskDto) {
+    const result = await this.taskService.findAll(payload);
+    return result;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.taskService.findOne(+id);
+  @ApiOkResponse({ description: 'Operation succeeded.', type: CreateTaskDto })
+  @ApiNotFoundResponse({ description: 'Searched task was not found.', type: ErrorDto })
+  async findOne(@Param('id') id: string) {
+    const result = await this.taskService.findOne(id);
+    return result;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
-    return this.taskService.update(+id, updateTaskDto);
+  @Put(':id')
+  @ApiBody({ type: CreateTaskDto })
+  @ApiOkResponse({ description: 'Operation succeeded.', type: CreateTaskDto })
+  @ApiNotFoundResponse({ description: 'Searched task was not found.', type: ErrorDto })
+  async update(@Param('id', ParseUUIDPipe) id: string, @Body() updateTaskDto: CreateTaskDto) {
+    const result = await this.taskService.update(id, updateTaskDto);
+    return result;
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.taskService.remove(+id);
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiNoContentResponse({ description: 'Success on removing the task.' })
+  @ApiNotFoundResponse({ description: 'Searched task was not found.', type: ErrorDto })
+  async remove(@Param('id', ParseUUIDPipe) id: string) {
+    const result = await this.taskService.remove(id);
+    return result;
   }
 }
