@@ -15,13 +15,11 @@ import {
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
-  ApiBody,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
-  ApiQuery,
   ApiTags
 } from '@nestjs/swagger';
 import SearchUserDto from '../../dto/user/search-user.dto';
@@ -40,7 +38,6 @@ export default class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  @ApiBody({ type: CreateUserDto })
   @ApiCreatedResponse({ description: 'The user was created.', type: CreateUserDto })
   async create(@Body() createUserDto: CreateUserDto) {
     const result = await this.userService.create(createUserDto);
@@ -48,7 +45,6 @@ export default class UserController {
   }
 
   @Get()
-  @ApiQuery({ type: SearchUserDto })
   @ApiOkResponse({ description: 'Operation succeeded.', type: ListUserDto })
   async findAll(@Query() payload: SearchUserDto) {
     const result = await this.userService.findAll(payload);
@@ -64,7 +60,6 @@ export default class UserController {
   }
 
   @Put(':id')
-  @ApiBody({ type: CreateUserDto })
   @ApiOkResponse({ description: 'Operation succeeded.', type: CreateUserDto })
   @ApiNotFoundResponse({ description: 'Searched user was not found.', type: ErrorDto })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() updateUserDto: CreateUserDto) {

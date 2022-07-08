@@ -15,13 +15,11 @@ import {
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
-  ApiBody,
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiNoContentResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
-  ApiQuery,
   ApiTags
 } from '@nestjs/swagger';
 import ListTaskDto from '../../dto/task/list-task.dto';
@@ -40,7 +38,6 @@ export default class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  @ApiBody({ type: CreateTaskDto })
   @ApiCreatedResponse({ description: 'The task was created.', type: CreateTaskDto })
   async create(@Body() createTaskDto: CreateTaskDto) {
     const result = await this.taskService.create(createTaskDto);
@@ -48,7 +45,6 @@ export default class TaskController {
   }
 
   @Get()
-  @ApiQuery({ type: SearchTaskDto })
   @ApiOkResponse({ description: 'Operation succeeded.', type: ListTaskDto })
   async findAll(@Query() payload: SearchTaskDto) {
     const result = await this.taskService.findAll(payload);
@@ -64,7 +60,6 @@ export default class TaskController {
   }
 
   @Put(':id')
-  @ApiBody({ type: CreateTaskDto })
   @ApiOkResponse({ description: 'Operation succeeded.', type: CreateTaskDto })
   @ApiNotFoundResponse({ description: 'Searched task was not found.', type: ErrorDto })
   async update(@Param('id', ParseUUIDPipe) id: string, @Body() updateTaskDto: CreateTaskDto) {

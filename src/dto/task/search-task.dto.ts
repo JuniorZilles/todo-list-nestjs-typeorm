@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsNotEmpty, IsString, IsUUID, MinLength } from 'class-validator';
 import PageDto from '../utils/page.dto';
 
 export default class SearchTaskDto extends PageDto {
@@ -33,6 +33,6 @@ export default class SearchTaskDto extends PageDto {
   })
   @IsNotEmpty()
   @IsString()
-  @MinLength(1)
+  @IsUUID()
   user?: string;
 }
