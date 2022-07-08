@@ -7,7 +7,9 @@ import PageDto from '../utils/page.dto';
 export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person Name',
-    example: 'João Silva'
+    required: false,
+    example: 'João Silva',
+    type: String
   })
   @IsOptional()
   @IsNotEmpty()
@@ -18,7 +20,9 @@ export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person CPF',
     format: 'XXX.XXX.XXX-XX',
-    example: '756.829.180-45'
+    required: false,
+    example: '756.829.180-45',
+    type: String
   })
   @IsOptional()
   @IsNotEmpty()
@@ -28,6 +32,7 @@ export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person birthday',
     format: 'DD/MM/YYYY',
+    required: false,
     example: '14/11/1994',
     type: String
   })
@@ -39,6 +44,7 @@ export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person email',
     format: 'email',
+    required: false,
     example: 'user@domain.com',
     type: String
   })
@@ -48,17 +54,8 @@ export default class SearchUserDto extends PageDto {
   email?: string;
 
   @ApiProperty({
-    description: 'Person password',
-    example: '1sa1d5as1d51d'
-  })
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(7)
-  password?: string;
-
-  @ApiProperty({
     description: 'Person address',
+    required: false,
     example: 'Street A, 4'
   })
   @IsOptional()
@@ -70,6 +67,7 @@ export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person city',
     type: String,
+    required: false,
     example: 'Dois Irmãos'
   })
   @IsOptional()
@@ -81,6 +79,7 @@ export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person state',
     type: String,
+    required: false,
     example: 'Rio Grande do Sul'
   })
   @IsOptional()
@@ -91,6 +90,7 @@ export default class SearchUserDto extends PageDto {
   @ApiProperty({
     description: 'Person country',
     type: String,
+    required: false,
     example: 'Brasil'
   })
   @IsOptional()
@@ -100,6 +100,7 @@ export default class SearchUserDto extends PageDto {
 
   @ApiProperty({
     description: 'Person zipCode',
+    required: false,
     type: String,
     example: '93950-000'
   })

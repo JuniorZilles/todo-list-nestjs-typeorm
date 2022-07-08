@@ -5,8 +5,9 @@ import PageDto from '../utils/page.dto';
 export default class SearchTaskDto extends PageDto {
   @ApiProperty({
     description: 'Task description',
-    required: true,
-    example: 'Go to the park with Penny'
+    required: false,
+    example: 'Go to the park with Penny',
+    type: String
   })
   @IsNotEmpty()
   @IsString()
@@ -15,8 +16,9 @@ export default class SearchTaskDto extends PageDto {
 
   @ApiProperty({
     description: 'Date of the task',
-    required: true,
-    example: '2022-12-24 03:20:00'
+    required: false,
+    example: '2022-12-24 03:20:00',
+    type: String
   })
   @IsNotEmpty()
   @IsString()
@@ -25,8 +27,9 @@ export default class SearchTaskDto extends PageDto {
 
   @ApiProperty({
     description: 'User Task Reference',
-    required: true,
-    example: '123'
+    required: false,
+    example: '123',
+    type: String
   })
   @IsNotEmpty()
   @IsString()

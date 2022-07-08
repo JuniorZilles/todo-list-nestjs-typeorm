@@ -5,7 +5,9 @@ import { IsNumber, IsOptional } from 'class-validator';
 export default class PageDto {
   @ApiProperty({
     description: 'Retrieved page',
-    required: false
+    required: false,
+    example: 1,
+    type: Number
   })
   @IsOptional()
   @Transform(({ value }) => Number(value))
@@ -14,7 +16,9 @@ export default class PageDto {
 
   @ApiProperty({
     description: 'Amount of retrieved pages',
-    required: false
+    required: false,
+    example: 10,
+    type: Number
   })
   @IsOptional()
   @Transform(({ value }) => Number(value))

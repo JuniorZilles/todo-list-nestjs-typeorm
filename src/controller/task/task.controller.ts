@@ -24,8 +24,8 @@ import {
   ApiQuery,
   ApiTags
 } from '@nestjs/swagger';
-import ListTaskDto from 'src/dto/task/list-task.dto';
-import SearchTaskDto from 'src/dto/task/search-task.dto';
+import ListTaskDto from '../../dto/task/list-task.dto';
+import SearchTaskDto from '../../dto/task/search-task.dto';
 import TaskService from '../../service/task/task.service';
 import CreateTaskDto from '../../dto/task/create-task.dto';
 import BadRequestErrorDto from '../../dto/utils/bad-request.dto';
