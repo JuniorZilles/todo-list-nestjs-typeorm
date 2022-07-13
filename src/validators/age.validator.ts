@@ -1,6 +1,6 @@
 import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
-import { toDifYears, toMomentDate } from 'src/utils/date.transform';
-import { dateRegex } from 'src/utils/default.regex';
+import { toDifYears, toMomentDate } from '../utils/date.transform';
+import { dateRegex } from '../utils/default.regex';
 
 @ValidatorConstraint({ name: 'AgeValidator', async: false })
 export default class DateIsOlderAgeValidator implements ValidatorConstraintInterface {
