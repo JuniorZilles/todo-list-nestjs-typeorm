@@ -1,5 +1,5 @@
-import { toDate } from 'src/utils/date.transform';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { toDate } from '../../utils/date.transform';
 import User from '../user/user.entity';
 
 @Entity('task')

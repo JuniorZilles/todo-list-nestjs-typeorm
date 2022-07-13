@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { ConfigModule } from '@nestjs/config';
-import Task from 'src/entities/task/task.entity';
-import User from 'src/entities/user/user.entity';
+import Task from '../../src/entities/task/task.entity';
+import User from '../../src/entities/user/user.entity';
 
 export default async (): Promise<void> => {
   ConfigModule.forRoot({
