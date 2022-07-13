@@ -4,8 +4,8 @@ export const createOneTask = (userId = '1') => {
   const chance = new Chance();
   return {
     description: chance.sentence(),
-    date: chance.date({ string: true }),
-    user: userId
+    date: chance.date(),
+    userId
   };
 };
 

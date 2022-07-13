@@ -44,13 +44,13 @@ describe('src :: service :: TaskService() :: update', () => {
         expect(updatedTask).toHaveProperty('date');
         expect(updatedTask.date).toBe(taskFactory.date);
         expect(updatedTask).toHaveProperty('user');
-        expect(updatedTask.user).toBe(taskFactory.user);
+        expect(updatedTask.userId).toBe(taskFactory.userId);
       });
     });
 
     describe('WHEN a task is updated for a non existing user', () => {
       beforeEach(async () => {
-        taskFactory.user = '12';
+        taskFactory.userId = '12';
       });
       it('THEN it throw an error', async () => {
         try {

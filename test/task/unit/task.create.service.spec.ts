@@ -48,7 +48,7 @@ describe('src :: service :: TaskService() :: create', () => {
     describe('WHEN a task is created for a non existing user', () => {
       it('THEN it throw an error', async () => {
         try {
-          await service.create({ ...taskFactory, user: '12' });
+          await service.create({ ...taskFactory, userId: '12' });
         } catch (e) {
           expect(e).toBeInstanceOf(NotFoundException);
           expect((<NotFoundException>e).name).toBe('NotFoundException');

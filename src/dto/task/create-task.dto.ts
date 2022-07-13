@@ -39,5 +39,5 @@ export default class CreateTaskDto {
   @IsString()
   userId: string;
 
-  user: User;
+  user?: User;
 }
