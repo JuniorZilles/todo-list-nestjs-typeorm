@@ -25,3 +25,16 @@ export const createManyUser = (amount = 10) => {
   }
   return users;
 };
+
+export const USER = {
+  name: 'Lola Newman',
+  cpf: '464.550.212-31',
+  birthday: '14/11/1994',
+  email: 'lez@cimidas.ki',
+  password: 'fa093908d2e6c37351b627c33f35cfadd9fc266e',
+  address: 'Luuto Boulevard',
+  city: 'Zaghopi',
+  state: 'MI',
+  country: 'FM',
+  zipCode: '49552-6292'
+};

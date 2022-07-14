@@ -15,12 +15,14 @@ export default async (): Promise<void> => {
     password: process.env.TYPEORM_PASSWORD,
     database: process.env.TYPEORM_DATABASE,
     entities: [Task, User],
-    synchronize: process.env.NODE_ENV === 'test',
     logging: false
   });
 
+  await dataSource.initialize();
+
   const taskRepository = dataSource.getRepository('task');
   const userRepository = dataSource.getRepository('user');
-  await taskRepository.query('TRUNCATE task CASCADE;');
-  await userRepository.query('TRUNCATE user CASCADE;');
+  await taskRepository.query('TRUNCATE TABLE task;');
+  await userRepository.query('DELETE FROM user');
+  await dataSource.destroy();
 };
