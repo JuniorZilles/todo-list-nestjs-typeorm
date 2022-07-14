@@ -34,5 +34,7 @@ export default class SearchTaskDto extends PageDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID()
-  user?: string;
+  userId?: string;
+
+  id?: string;
 }

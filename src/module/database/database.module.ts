@@ -17,6 +17,7 @@ import Task from '../../entities/task/task.entity';
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
       entities: [Task, User],
+      autoLoadEntities: process.env.NODE_ENV === 'test',
       synchronize: process.env.NODE_ENV === 'test',
       logging: false
     })

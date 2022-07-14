@@ -108,4 +108,6 @@ export default class SearchUserDto extends PageDto {
   @IsNotEmpty()
   @IsString()
   zipCode?: string;
+
+  id?: string;
 }

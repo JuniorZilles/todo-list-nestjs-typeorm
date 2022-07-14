@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import ListUserDto from 'src/dto/user/list-user.dto';
@@ -19,6 +19,10 @@ export default class UserService {
   }
 
   async create(createUserDto: CreateUserDto) {
+    const existingUser = await this.repository.findOne({ cpf: createUserDto.cpf });
+    if (existingUser) {
+      throw new BadRequestException('Duplicate cpf');
+    }
     const result = await this.repository.create(createUserDto);
     return result;
   }
@@ -29,7 +33,7 @@ export default class UserService {
   }
 
   async findOne(id: string) {
-    const result = await this.repository.findOne(id);
+    const result = await this.repository.findOne({ id });
     if (!result) {
       throw new NotFoundException();
     }

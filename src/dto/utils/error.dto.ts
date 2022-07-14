@@ -10,7 +10,7 @@ export default class ErrorDto {
   statusCode: number;
 
   @ApiProperty({
-    description: 'Error messages',
+    description: 'Error message',
     readOnly: true
   })
   message: string;

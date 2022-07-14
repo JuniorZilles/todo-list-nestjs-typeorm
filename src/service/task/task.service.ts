@@ -27,7 +27,7 @@ export default class TaskService {
   }
 
   async getUser(id: string) {
-    const user = await this.repositoryUser.findOne(id);
+    const user = await this.repositoryUser.findOne({ id });
     if (!user) {
       throw new NotFoundException();
     }
@@ -46,7 +46,7 @@ export default class TaskService {
   }
 
   async findOne(id: string) {
-    const result = await this.repositoryTask.findOne(id);
+    const result = await this.repositoryTask.findOne({ id });
     if (!result) {
       throw new NotFoundException();
     }

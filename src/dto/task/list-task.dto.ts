@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import Task from '../../entities/task/task.entity';
 import MetaDto from '../utils/meta.dto';
 import CreateTaskDto from './create-task.dto';
 
@@ -8,7 +9,7 @@ export default class ListTaskDto {
     isArray: true,
     type: () => CreateTaskDto
   })
-  tasks: CreateTaskDto[];
+  tasks: Task[];
 
   @ApiProperty({
     description: 'Pagination information'

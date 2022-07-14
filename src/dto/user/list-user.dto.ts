@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import User from '../../entities/user/user.entity';
 import MetaDto from '../utils/meta.dto';
 import CreateUserDto from './create-user.dto';
 
@@ -8,7 +9,7 @@ export default class ListUserDto {
     isArray: true,
     type: () => CreateUserDto
   })
-  users: CreateUserDto[];
+  users: User[];
 
   @ApiProperty({
     description: 'Pagination information'

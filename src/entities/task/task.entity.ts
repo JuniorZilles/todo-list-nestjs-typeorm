@@ -17,7 +17,7 @@ export default class Task {
   })
   date: Date;
 
-  @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   user: User;
 
   @CreateDateColumn({
