@@ -60,7 +60,7 @@ export default class CreateUserDto {
   })
   @IsNotEmpty()
   @IsString()
-  @MinLength(7)
+  @MinLength(6)
   password: string;
 
   @ApiProperty({

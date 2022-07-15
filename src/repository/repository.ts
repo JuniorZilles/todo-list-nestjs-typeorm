@@ -15,8 +15,17 @@ export default class CustomRepository<Entity, DTO extends DeepPartial<Entity>, S
     return result as Entity;
   }
 
-  async findOne(query: SearchDTO): Promise<Entity> {
-    const result = await this.repository.findOne({ where: query as unknown as FindOptionsWhere<Entity> });
+  private buildQueryOr(query: SearchDTO) {
+    const itens = [];
+    Object.keys(query).forEach((key) => {
+      itens.push({ [key]: query[key] });
+    });
+    return itens;
+  }
+
+  async findOne(query: SearchDTO, operator = 'and'): Promise<Entity> {
+    const buildedQuery = operator === 'and' ? query : this.buildQueryOr(query);
+    const result = await this.repository.findOne({ where: buildedQuery as unknown as FindOptionsWhere<Entity> });
     return result as Entity;
   }
 

@@ -19,9 +19,10 @@ export default class UserService {
   }
 
   async create(createUserDto: CreateUserDto) {
-    const existingUser = await this.repository.findOne({ cpf: createUserDto.cpf });
+    const { cpf, email } = createUserDto;
+    const existingUser = await this.repository.findOne({ cpf, email }, 'or');
     if (existingUser) {
-      throw new BadRequestException('Duplicate cpf');
+      throw new BadRequestException('Duplicate cpf or email');
     }
     const result = await this.repository.create(createUserDto);
     return result;

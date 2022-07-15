@@ -1,6 +1,6 @@
-import { Exclude, Transform } from 'class-transformer';
+import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { toDate, toStringDate } from '../../utils/date.transform';
+import { toDate } from '../../utils/date.transform';
 import Task from '../task/task.entity';
 
 @Entity('user')
