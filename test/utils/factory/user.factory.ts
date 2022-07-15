@@ -1,11 +1,12 @@
 import { Chance } from 'chance';
+import fromChanceDate from '../date-transform';
 
 export const createOneUser = () => {
   const chance = new Chance();
   return {
     name: chance.name(),
     cpf: chance.cpf(),
-    birthday: chance.birthday(),
+    birthday: chance.birthday({ year: chance.year({ min: 1920, max: 2003 }) }),
     email: chance.email(),
     password: chance.hash(),
     address: chance.street(),
@@ -26,15 +27,18 @@ export const createManyUser = (amount = 10) => {
   return users;
 };
 
-export const USER = {
-  name: 'Lola Newman',
-  cpf: '464.550.212-31',
-  birthday: '14/11/1994',
-  email: 'lez@cimidas.ki',
-  password: 'fa093908d2e6c37351b627c33f35cfadd9fc266e',
-  address: 'Luuto Boulevard',
-  city: 'Zaghopi',
-  state: 'MI',
-  country: 'FM',
-  zipCode: '49552-6292'
+export const createOnePOSTUser = () => {
+  const chance = new Chance();
+  return {
+    name: chance.name(),
+    cpf: chance.cpf(),
+    birthday: fromChanceDate(chance.birthday({ string: true, year: chance.year({ min: 1920, max: 2003 }) }) as string),
+    email: chance.email(),
+    password: chance.hash(),
+    address: chance.street(),
+    city: chance.city(),
+    state: chance.state(),
+    country: chance.country(),
+    zipCode: chance.zip({ plusfour: true })
+  };
 };
