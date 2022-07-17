@@ -8,7 +8,7 @@ export default class Migrations1657308260232 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uuid',
+            type: 'varchar(36)',
             isPrimary: true
           },
           {
@@ -63,11 +63,6 @@ export default class Migrations1657308260232 implements MigrationInterface {
             type: 'varchar'
           },
           {
-            name: 'zipCode',
-            isNullable: false,
-            type: 'varchar'
-          },
-          {
             name: 'createdAt',
             type: 'timestamp',
             default: 'now()'
@@ -88,7 +83,7 @@ export default class Migrations1657308260232 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uuid',
+            type: 'varchar(36)',
             isPrimary: true
           },
           {
@@ -103,7 +98,7 @@ export default class Migrations1657308260232 implements MigrationInterface {
           },
           {
             name: 'userId',
-            type: 'uuid'
+            type: 'varchar(36)'
           },
           {
             name: 'createdAt',
@@ -126,7 +121,8 @@ export default class Migrations1657308260232 implements MigrationInterface {
         columnNames: ['userId'],
         referencedColumnNames: ['id'],
         referencedTableName: 'user',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       })
     );
   }
