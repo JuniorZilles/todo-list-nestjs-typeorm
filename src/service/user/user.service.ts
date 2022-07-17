@@ -42,6 +42,13 @@ export default class UserService {
   }
 
   async update(id: string, updateUserDto: CreateUserDto) {
+    const { cpf, email } = updateUserDto;
+    if (cpf || email) {
+      const existingUser = await this.repository.findOne({ cpf, email }, 'or');
+      if (existingUser && existingUser?.id !== id) {
+        throw new BadRequestException('Duplicate cpf or email');
+      }
+    }
     const result = await this.repository.update(id, updateUserDto);
     if (!result) {
       throw new NotFoundException();
