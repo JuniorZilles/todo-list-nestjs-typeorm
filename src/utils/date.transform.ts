@@ -6,7 +6,7 @@ export const toMomentDate = (date: string): moment.Moment => moment(date, 'DD/MM
 
 export const toDifYears = (date: moment.Moment) => moment().diff(date, 'years', false);
 
-export const toStringDate = (date: string): string => moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+export const toStringDate = (date: Date): string => moment(date).format('DD/MM/YYYY');
 
 export const isValidDate = (date: string): boolean => moment.isDate(date);
 
