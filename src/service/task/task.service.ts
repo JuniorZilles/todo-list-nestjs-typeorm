@@ -48,7 +48,7 @@ export default class TaskService {
   async findOne(id: string) {
     const result = await this.repositoryTask.findOne({ id });
     if (!result) {
-      throw new NotFoundException();
+      throw new NotFoundException('Task not found');
     }
     return result;
   }

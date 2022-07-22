@@ -36,7 +36,7 @@ export default class UserService {
   async findOne(id: string) {
     const result = await this.repository.findOne({ id });
     if (!result) {
-      throw new NotFoundException();
+      throw new NotFoundException('User not found');
     }
     return result;
   }
