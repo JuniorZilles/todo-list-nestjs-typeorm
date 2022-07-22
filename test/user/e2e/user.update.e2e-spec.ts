@@ -5,7 +5,7 @@ import AppModule from '../../../src/module/app.module';
 import { createOnePOSTUser } from '../../utils/factory/user.factory';
 
 describe('src :: user :: e2e :: PUT', () => {
-  describe('GIVEN a mocked repository with TWO users', () => {
+  describe('GIVEN a database with TWO users', () => {
     let app: INestApplication;
 
     beforeAll(async () => {
