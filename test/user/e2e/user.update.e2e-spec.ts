@@ -219,6 +219,48 @@ describe('src :: user :: e2e :: PUT', () => {
         ]);
         expect(body.error).toBe('Bad Request');
       });
+
+      describe('WHEN update a user with a invalid id', () => {
+        it('THEN it should return status 400 with the body containing the error message', async () => {
+          const user = createOnePOSTUser();
+          const response = await request(app.getHttpServer()).put(`/user/adsd78`).send(user);
+          const { body, status } = response;
+
+          expect(status).toBe(400);
+
+          expect(body).toEqual({
+            statusCode: expect.any(Number),
+            message: expect.any(String),
+            error: expect.any(String)
+          });
+
+          expect(body.statusCode).toBe(400);
+          expect(body.message).toBe('Validation failed (uuid  is expected)');
+          expect(body.error).toBe('Bad Request');
+        });
+      });
+
+      describe('WHEN update a user with a non existing id', () => {
+        it('THEN it should return status 400 with the body containing the error message', async () => {
+          const user = createOnePOSTUser();
+          const response = await request(app.getHttpServer())
+            .put(`/user/6a531ca6-0a13-11ed-861d-0242ac120002`)
+            .send(user);
+          const { body, status } = response;
+
+          expect(status).toBe(404);
+
+          expect(body).toEqual({
+            statusCode: expect.any(Number),
+            message: expect.any(String),
+            error: expect.any(String)
+          });
+
+          expect(body.statusCode).toBe(404);
+          expect(body.message).toBe('User not found');
+          expect(body.error).toBe('Not Found');
+        });
+      });
     });
   });
 });
