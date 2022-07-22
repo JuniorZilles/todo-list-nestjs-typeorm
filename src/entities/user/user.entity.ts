@@ -1,6 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { toDate } from '../../utils/date.transform';
+import { toDate, toStringDate } from '../../utils/date.transform';
 import Task from '../task/task.entity';
 
 @Entity('user')
@@ -17,7 +17,7 @@ export default class User {
   @Column({
     nullable: false,
     type: 'date',
-    transformer: { to: (value: string) => toDate(value), from: (value: Date) => value }
+    transformer: { to: (value: string) => toDate(value), from: (value: Date) => toStringDate(value) }
   })
   birthday: Date;
 
