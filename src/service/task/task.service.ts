@@ -57,7 +57,7 @@ export default class TaskService {
     const user = await this.getUser(updateTaskDto.userId);
     const result = await this.repositoryTask.update(id, { ...updateTaskDto, user });
     if (!result) {
-      throw new NotFoundException();
+      throw new NotFoundException('Task not found');
     }
     return result;
   }
@@ -65,7 +65,7 @@ export default class TaskService {
   async remove(id: string) {
     const result = await this.repositoryTask.remove(id);
     if (!result) {
-      throw new NotFoundException();
+      throw new NotFoundException('Task not found');
     }
     return result;
   }

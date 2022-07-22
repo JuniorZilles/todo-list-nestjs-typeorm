@@ -51,7 +51,7 @@ export default class UserService {
     }
     const result = await this.repository.update(id, updateUserDto);
     if (!result) {
-      throw new NotFoundException();
+      throw new NotFoundException('User not found');
     }
     return result;
   }
@@ -59,7 +59,7 @@ export default class UserService {
   async remove(id: string) {
     const result = await this.repository.remove(id);
     if (!result) {
-      throw new NotFoundException();
+      throw new NotFoundException('User not found');
     }
     return result;
   }
