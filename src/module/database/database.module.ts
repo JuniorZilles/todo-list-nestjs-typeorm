@@ -20,7 +20,6 @@ import Task from '../../entities/task/task.entity';
         password: process.env.TYPEORM_PASSWORD,
         database: process.env.TYPEORM_DATABASE,
         entities: [User, Task],
-        synchronize: process.env.NODE_ENV === 'test',
         migrations: [process.env.TYPEORM_MIGRATIONS],
         logging: false
       }),
