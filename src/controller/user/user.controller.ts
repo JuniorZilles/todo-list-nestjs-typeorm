@@ -54,7 +54,7 @@ export default class UserController {
   @Get(':id')
   @ApiOkResponse({ description: 'Operation succeeded.', type: CreateUserDto })
   @ApiNotFoundResponse({ description: 'Searched user was not found.', type: ErrorDto })
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseUUIDPipe) id: string) {
     const result = await this.userService.findOne(id);
     return result;
   }

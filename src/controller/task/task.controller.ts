@@ -54,7 +54,7 @@ export default class TaskController {
   @Get(':id')
   @ApiOkResponse({ description: 'Operation succeeded.', type: CreateTaskDto })
   @ApiNotFoundResponse({ description: 'Searched task was not found.', type: ErrorDto })
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id', ParseUUIDPipe) id: string) {
     const result = await this.taskService.findOne(id);
     return result;
   }
