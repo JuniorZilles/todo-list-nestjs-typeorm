@@ -60,6 +60,7 @@ export default class TaskService {
     if (!result) {
       throw new NotFoundException('Task not found');
     }
+    result.userId = user.id;
     return result;
   }
 
