@@ -3,9 +3,9 @@ import { createManyUser } from '../factory/user.factory';
 import { MockType } from '../mock.type';
 
 const userRepositoryMock: () => MockType<Repository<any>> = jest.fn(() => ({
-  findOne: jest.fn(({ id }) => {
+  findOne: jest.fn(({ where }) => {
     const users = createManyUser();
-    const user = users.find((userItem) => userItem.id === id);
+    const user = users.find((userItem) => userItem.id === where.id);
     delete user?.password;
     return user;
   }),

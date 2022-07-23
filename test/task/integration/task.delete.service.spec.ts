@@ -39,7 +39,7 @@ describe('src :: service :: TaskService() :: delete', () => {
         expect(createdTask.id).toBeDefined();
         expect(createdTask).toHaveProperty('description');
         expect(createdTask).toHaveProperty('date');
-        expect(createdTask).toHaveProperty('user');
+        expect(createdTask).toHaveProperty('userId');
       });
     });
 

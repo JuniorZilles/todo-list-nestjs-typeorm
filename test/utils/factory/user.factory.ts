@@ -6,7 +6,7 @@ export const createOneUser = () => {
   return {
     name: chance.name(),
     cpf: chance.cpf(),
-    birthday: chance.birthday({ year: chance.year({ min: 1920, max: 2003 }) }),
+    birthday: chance.birthday({ year: chance.year({ min: 1920, max: 2003 }) }) as Date,
     email: chance.email(),
     password: chance.hash(),
     address: chance.street(),

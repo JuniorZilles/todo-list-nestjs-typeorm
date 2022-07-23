@@ -40,7 +40,7 @@ describe('src :: service :: TaskService() :: findOne', () => {
         expect(foundTask.id).toBe('1');
         expect(foundTask).toHaveProperty('description');
         expect(foundTask).toHaveProperty('date');
-        expect(foundTask).toHaveProperty('user');
+        expect(foundTask).toHaveProperty('userId');
       });
     });
 
