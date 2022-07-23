@@ -37,7 +37,7 @@ export default class CreateTaskDto {
   })
   @IsNotEmpty()
   @IsString()
-  userId: string;
+  userId?: string;
 
   user?: User;
 }
