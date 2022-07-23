@@ -37,7 +37,6 @@ export default class TaskService {
   async create(createTaskDto: CreateTaskDto) {
     const user = await this.getUser(createTaskDto.userId);
     const result = await this.repositoryTask.create({ ...createTaskDto, user });
-    result.userId = user.id;
     return result;
   }
 
@@ -60,7 +59,6 @@ export default class TaskService {
     if (!result) {
       throw new NotFoundException('Task not found');
     }
-    result.userId = user.id;
     return result;
   }
 
