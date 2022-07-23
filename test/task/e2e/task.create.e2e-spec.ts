@@ -6,7 +6,7 @@ import { createOnePOSTUser } from '../../utils/factory/user.factory';
 import { createOnePostTask } from '../../utils/factory/task.factory';
 
 describe('src :: task :: e2e :: POST', () => {
-  describe('GIVEN database with 2 user and zero tasks', () => {
+  describe('GIVEN database with 2 user and 1 task each', () => {
     let app: INestApplication;
 
     beforeAll(async () => {
@@ -38,8 +38,8 @@ describe('src :: task :: e2e :: POST', () => {
         request(app.getHttpServer()).post('/user').send(createOnePOSTUser())
       ]);
       await Promise.all([
-        request(app.getHttpServer()).post('/user').send(createOnePostTask(responses[0].body.id)),
-        request(app.getHttpServer()).post('/user').send(createOnePostTask(responses[1].body.id))
+        request(app.getHttpServer()).post('/task').send(createOnePostTask(responses[0].body.id)),
+        request(app.getHttpServer()).post('/task').send(createOnePostTask(responses[1].body.id))
       ]);
     });
 
