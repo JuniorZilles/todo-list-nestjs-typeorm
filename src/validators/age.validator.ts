@@ -9,7 +9,7 @@ export default class DateIsOlderAgeValidator implements ValidatorConstraintInter
       return false;
     }
     const date = toMomentDate(text);
-    if (!date.isValid) {
+    if (!date.isValid()) {
       return false;
     }
     const age = toDifYears(date);

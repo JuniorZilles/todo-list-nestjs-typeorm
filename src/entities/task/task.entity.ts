@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import { toDate } from '../../utils/date.transform';
 import User from '../user/user.entity';
@@ -17,8 +18,11 @@ export default class Task {
   })
   date: Date;
 
+  @Exclude()
   @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   user: User;
+
+  userId?: string;
 
   @CreateDateColumn({
     default: () => 'CURRENT_TIMESTAMP(6)'

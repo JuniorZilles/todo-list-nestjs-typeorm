@@ -29,7 +29,7 @@ export default class TaskService {
   async getUser(id: string) {
     const user = await this.repositoryUser.findOne({ id });
     if (!user) {
-      throw new NotFoundException();
+      throw new NotFoundException('User not found');
     }
     return user;
   }
@@ -37,6 +37,7 @@ export default class TaskService {
   async create(createTaskDto: CreateTaskDto) {
     const user = await this.getUser(createTaskDto.userId);
     const result = await this.repositoryTask.create({ ...createTaskDto, user });
+    result.userId = user.id;
     return result;
   }
 

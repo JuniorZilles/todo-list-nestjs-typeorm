@@ -1,4 +1,5 @@
 import { Chance } from 'chance';
+import fromChanceDate from '../date-transform';
 
 export const createOneTask = (userId = '1') => {
   const chance = new Chance();
@@ -16,4 +17,13 @@ export const createManyTask = (amount = 10) => {
     tasks.push(task);
   }
   return tasks;
+};
+
+export const createOnePostTask = (userId = '1') => {
+  const chance = new Chance();
+  return {
+    description: chance.sentence(),
+    date: fromChanceDate(chance.date({ string: true }) as string),
+    userId
+  };
 };
