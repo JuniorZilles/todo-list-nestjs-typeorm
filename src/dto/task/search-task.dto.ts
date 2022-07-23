@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUUID, MinLength } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUUID, MinLength } from 'class-validator';
 import PageDto from '../utils/page.dto';
 
 export default class SearchTaskDto extends PageDto {
@@ -9,6 +9,7 @@ export default class SearchTaskDto extends PageDto {
     example: 'Go to the park with Penny',
     type: String
   })
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   @MinLength(1)
@@ -20,6 +21,7 @@ export default class SearchTaskDto extends PageDto {
     example: '2022-12-24 03:20:00',
     type: String
   })
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   @MinLength(1)
@@ -31,6 +33,7 @@ export default class SearchTaskDto extends PageDto {
     example: '123',
     type: String
   })
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   @IsUUID()
