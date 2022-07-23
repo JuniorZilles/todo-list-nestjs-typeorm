@@ -1,6 +1,14 @@
 import { Exclude } from 'class-transformer';
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { toDate } from '../../utils/date.transform';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
+import { toDate, toStringDate } from '../../utils/date.transform';
 import User from '../user/user.entity';
 
 @Entity('task')
@@ -14,14 +22,16 @@ export default class Task {
   @Column({
     nullable: false,
     type: 'date',
-    transformer: { to: (value: string) => toDate(value), from: (value: Date) => value }
+    transformer: { to: (value: string) => toDate(value), from: (value: Date) => toStringDate(value) }
   })
   date: Date;
 
   @Exclude()
+  @JoinColumn({ name: 'userId' })
   @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   user: User;
 
+  @Column({ nullable: false })
   userId?: string;
 
   @CreateDateColumn({
