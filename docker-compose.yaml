@@ -24,6 +24,30 @@ services:
     networks:
       - mysql-compose-network
 
+  app:
+    container_name: api-svc
+    build: .
+    ports:
+        - "3000:3000"
+    environment:
+      TYPEORM_HOST: db
+      TYPEORM_USERNAME: root
+      TYPEORM_PASSWORD: root
+      TYPEORM_DATABASE: todo
+      TYPEORM_PORT: 3306
+      TYPEORM_MIGRATIONS: src/migrations/**/*.ts
+      NODE_ENV: prod
+      PORT: 3000
+    entrypoint:
+      - npm
+      - run
+      - start:prod
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      - mysql-compose-network
 networks: 
   mysql-compose-network:
     driver: bridge
