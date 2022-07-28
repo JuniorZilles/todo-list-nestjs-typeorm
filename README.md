@@ -16,7 +16,8 @@ This is repository to train me to use nestjs and typeorm. The task consist on cr
 ![](http://img.shields.io/static/v1?label=Typescript&message=4.3.5&color=blue&style=for-the-badge&logo=typescript)
 ![](http://img.shields.io/static/v1?label=mysql&message=8.0.27&color=blue&style=for-the-badge&logo=MYSQL)
 ![](http://img.shields.io/static/v1?label=STATUS&message=DONE&color=GREEN&style=for-the-badge)
-## Variáveis de Ambiente
+
+## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env
 
